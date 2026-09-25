@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: parse_sitemap_development
+
+test:
+  <<: *default
+  database: parse_sitemap_test
+
+production:
+  <<: *default
+  database: parse_sitemap_production
+  username: parse_sitemap
+  password: parse_sitemap2026project

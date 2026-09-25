@@ -1,0 +1,119 @@
+:root {
+  --bg-0: #dfe6ee;
+  --bg-1: #f4f7fb;
+  --surface: rgba(255, 255, 255, 0.86);
+  --ink: #132033;
+  --muted: #5d6b7c;
+  --line: #c9d4e1;
+  --accent: #e36b14;
+  --accent-dark: #b6520c;
+  --steel: #1f4b7a;
+  --shadow: 0 18px 40px rgba(19, 32, 51, 0.1);
+  --radius: 18px;
+  --font-display: "Syne", sans-serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(227, 107, 20, 0.16), transparent 32%),
+    radial-gradient(circle at top right, rgba(31, 75, 122, 0.18), transparent 28%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1) 40%, #eef3f8);
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+main {
+  min-height: calc(100vh - 120px);
+  padding: 0 0 3rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.35rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--accent-dark);
+}
+
+.btn--ghost {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn--link {
+  background: transparent;
+  color: var(--steel);
+  padding-inline: 0.5rem;
+}
+
+#flash {
+  .container,
+  & > * {
+    max-width: 1180px;
+    margin: 0.75rem auto 0;
+    padding: 0 1.25rem;
+  }
+}
+
+.notice,
+.alert {
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  margin: 0.75rem auto 0;
+  max-width: 1180px;
+}
+
+.notice {
+  background: #e8f7ef;
+  color: #146c43;
+}
+
+.alert {
+  background: #fdeceb;
+  color: #9b1c1c;
+}

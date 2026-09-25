@@ -1,0 +1,20 @@
+doctype html
+html lang="#{I18n.locale}"
+  head
+    title Parse Sitemap
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    link rel="preconnect" href="https://fonts.googleapis.com"
+    link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""
+    link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"
+    = stylesheet_link_tag "css/application.min", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+    = csrf_meta_tags
+    = csp_meta_tag
+
+  body
+    #flash
+      = render 'layouts/flash'
+    = render 'layouts/header'
+    main
+      = yield
+    = render 'layouts/footer'

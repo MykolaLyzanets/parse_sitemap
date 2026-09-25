@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+# Sidekiq process options. Cron schedule lives in config/sidekiq_cron.yml
+:concurrency: 5
+:timeout: 25
+:queues:
+  - [telegram, 7]
+  - [default, 3]
