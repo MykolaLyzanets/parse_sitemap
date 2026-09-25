@@ -1,4 +1,13 @@
 ua:
-  en: English
-  ua: Українська
-  ru: Російська
+  activerecord:
+    attributes:
+      user:
+        email: email
+        password: пароль
+  time:
+    formats:
+      dashboard: "%d.%m.%Y %H:%M"
+  number:
+    format:
+      delimiter: " "
+      separator: ","

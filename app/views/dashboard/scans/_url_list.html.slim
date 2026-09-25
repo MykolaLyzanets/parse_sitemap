@@ -1,0 +1,8 @@
+- if url_page.urls.any?
+  ul.dash-url-list
+    - url_page.urls.each do |url|
+      li
+        code.dash-code= url
+- else
+  .dash-empty
+    p= empty

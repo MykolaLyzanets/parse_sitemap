@@ -1,0 +1,18 @@
+- content_for :dashboard_title, 'Сайти'
+.container-dash
+  = render 'dashboard/shared/page_header',
+    title: 'Сайти під моніторингом',
+    subtitle: 'Огляд сканувань sitemap та останніх змін URL (тестові дані).'
+
+  .dash-stats-row
+    = render 'dashboard/shared/stat_card', label: 'Сайтів', value: dashboard_number(@sites.size)
+    = render 'dashboard/shared/stat_card',
+      label: 'Усього URL (сума)',
+      value: dashboard_number(@sites.sum(&:url_count)),
+      hint: 'За останні відомі значення'
+    = render 'dashboard/shared/stat_card',
+      label: 'Видалено (останній scan)',
+      value: dashboard_number(@sites.sum(&:last_removed_count)),
+      variant: 'danger'
+
+  = render 'dashboard/sites/sites_table', sites: @sites

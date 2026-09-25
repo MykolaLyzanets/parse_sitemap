@@ -1,0 +1,18 @@
+- tabs = { 'added' => scan.added_count, 'removed' => scan.removed_count, 'unchanged' => scan.unchanged_count }
+.dash-card
+  .dash-tabs role="tablist"
+    - tabs.each do |tab, count|
+      - active = url_page.change_type == tab
+      = link_to dashboard_site_scan_path(site, scan, tab: tab, page: 1),
+        class: "dash-tabs__btn #{'is-active' if active}",
+        role: 'tab',
+        aria: { selected: active } do
+        = { 'added' => 'Додано', 'removed' => 'Видалено', 'unchanged' => 'Без змін' }[tab]
+        span.dash-tabs__count= count
+
+  .dash-tab-panels
+    .dash-tab-panel
+      - empty = { 'added' => 'Нових URL у цьому скануванні немає.', 'removed' => 'Видалених URL у цьому скануванні немає.', 'unchanged' => 'URL без змін у цьому скануванні немає.' }[url_page.change_type]
+      = render 'dashboard/scans/url_list', url_page: url_page, empty: empty
+      - page_path = ->(p) { dashboard_site_scan_path(site, scan, tab: url_page.change_type, page: p) }
+      = render 'dashboard/shared/pagination', page: url_page, page_path: page_path

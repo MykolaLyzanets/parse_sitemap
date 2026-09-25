@@ -1,0 +1,8 @@
+nav.dash-breadcrumb aria-label="Навігаційний ланцюжок"
+  ol
+    - items.each_with_index do |item, index|
+      li
+        - if item[:path] && index < items.length - 1
+          = link_to item[:label], item[:path]
+        - else
+          span= item[:label]

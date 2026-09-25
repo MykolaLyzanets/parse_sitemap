@@ -1,0 +1,10 @@
+- if page.total_pages > 1
+  nav.dash-pagination.dash-pagination--inset aria-label="Сторінки"
+    - if page.page > 1
+      = link_to '← Назад', page_path.call(page.page - 1), class: 'dash-pagination__link'
+    span.dash-pagination__status
+      | Сторінка #{page.page} з #{page.total_pages}
+      span.dash-pagination__muted
+        |  (#{dashboard_number(page.total_count)} усього, по #{page.per_page} на сторінку)
+    - if page.page < page.total_pages
+      = link_to 'Далі →', page_path.call(page.page + 1), class: 'dash-pagination__link'

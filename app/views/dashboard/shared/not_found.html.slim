@@ -1,0 +1,7 @@
+- content_for :dashboard_title, 'Не знайдено'
+.container-dash
+  = render 'dashboard/shared/page_header',
+    title: 'Не знайдено',
+    subtitle: 'Сайт або сканування відсутні в тестовому наборі даних.'
+  p
+    = link_to 'До списку сайтів', dashboard_root_path, class: 'btn btn--ghost'

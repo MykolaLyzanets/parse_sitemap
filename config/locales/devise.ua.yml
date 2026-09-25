@@ -1,0 +1,28 @@
+ua:
+  devise:
+    failure:
+      already_authenticated: Ви вже увійшли в систему.
+      inactive: Ваш обліковий запис ще не активовано.
+      invalid: Невірний %{authentication_keys} або пароль.
+      locked: Ваш обліковий запис заблоковано.
+      last_attempt: Залишилась одна спроба перед блокуванням облікового запису.
+      not_found_in_database: Невірний %{authentication_keys} або пароль.
+      timeout: Сесію завершено. Увійдіть знову, щоб продовжити.
+      unauthenticated: Потрібно увійти, щоб продовжити.
+      unconfirmed: Підтвердьте email перед продовженням.
+    sessions:
+      signed_in: Вхід виконано успішно.
+      signed_out: Вихід виконано успішно.
+      already_signed_out: Вихід виконано успішно.
+    passwords:
+      send_instructions: Незабаром надійдуть інструкції для відновлення пароля.
+      updated: Пароль успішно змінено.
+    unlocks:
+      unlocked: Обліковий запис розблоковано. Увійдіть, щоб продовжити.
+  errors:
+    messages:
+      not_saved:
+        one: '1 помилка не дозволила зберегти %{resource}:'
+        few: '%{count} помилки не дозволили зберегти %{resource}:'
+        many: '%{count} помилок не дозволили зберегти %{resource}:'
+        other: '%{count} помилок не дозволили зберегти %{resource}:'

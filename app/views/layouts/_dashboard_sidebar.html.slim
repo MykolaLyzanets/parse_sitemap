@@ -1,0 +1,15 @@
+aside.dash-sidebar
+  .dash-sidebar__brand
+    = link_to dashboard_root_path, class: 'dash-sidebar__logo' do
+      span.dash-sidebar__logo-mark PS
+      span Parse Sitemap
+    p.dash-sidebar__tagline Внутрішній моніторинг sitemap
+
+  nav.dash-sidebar__nav aria-label="Панель керування"
+    = link_to dashboard_root_path, class: "dash-sidebar__link #{controller_path.start_with?('dashboard/') ? 'is-active' : ''}" do
+      span.dash-sidebar__link-label Сайти
+      span.dash-sidebar__link-hint Усі домени під моніторингом
+
+  .dash-sidebar__footer
+    - if user_signed_in?
+      p.dash-sidebar__user= current_user.email

@@ -1,0 +1,34 @@
+- content_for :dashboard_title, "Видалені · #{@site.name}"
+.container-dash
+  - breadcrumb = [{ label: 'Сайти', path: dashboard_root_path }, { label: @site.name, path: dashboard_site_path(@site) }, { label: 'Видалені URL' }]
+  = render 'dashboard/shared/page_header',
+    title: 'Видалені URL',
+    subtitle: 'Адреси, які зникли з sitemap порівняно з попереднім скануванням.',
+    breadcrumb: breadcrumb,
+    actions: link_to('Огляд сайту', dashboard_site_path(@site), class: 'btn btn--ghost')
+
+  .dash-card.dash-card--flush
+    - if @removed_page.rows.any?
+      .dash-table-wrap
+        table.dash-table
+          thead
+            tr
+              th URL
+              th Перше виявлення
+              th Останнє сканування
+              th
+          tbody
+            - @removed_page.rows.each do |row|
+              tr
+                td
+                  code.dash-code.dash-code--block= row.url
+                td= dashboard_format_time(row.first_detected_at)
+                td
+                  = link_to dashboard_format_time(row.scan_at), dashboard_site_scan_path(@site, row.scan_id), class: 'dash-table__primary'
+                td.dash-table__actions
+                  = link_to 'Деталі', dashboard_site_scan_path(@site, row.scan_id), class: 'btn btn--link'
+      - page_path = ->(p) { removed_urls_dashboard_site_path(@site, page: p) }
+      = render 'dashboard/shared/pagination', page: @removed_page, page_path: page_path
+    - else
+      .dash-empty
+        p Для цього сайту немає видалених URL.

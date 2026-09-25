@@ -1,0 +1,48 @@
+- content_for :dashboard_title, @site.name
+.container-dash
+  - breadcrumb = [{ label: 'Сайти', path: dashboard_root_path }, { label: @site.name }]
+  - scan_button = @scan_running ? tag.button('Сканування…', type: 'button', class: 'btn btn--ghost', disabled: true) : button_to('Запустити сканування', start_scan_dashboard_site_path(@site), method: :post, class: 'btn btn--primary')
+  - header_actions = safe_join([scan_button, link_to('Видалені URL', removed_urls_dashboard_site_path(@site), class: 'btn btn--ghost')], ' ')
+  = render 'dashboard/shared/page_header',
+    title: @site.name,
+    subtitle: @site.domain,
+    breadcrumb: breadcrumb,
+    actions: header_actions
+
+  .dash-site-meta.dash-card
+    dl.dash-meta-grid
+      div
+        dt Sitemap
+        dd
+          code.dash-code= @site.sitemap_url
+      div
+        dt URL у sitemap
+        dd= dashboard_number(@site.url_count)
+      div
+        dt Останнє сканування
+        dd= dashboard_format_time(@site.last_scan_at)
+      div
+        dt Примітки
+        dd= @site.notes.presence || '—'
+
+  - if @last_scan
+    .dash-stats-row
+      = render 'dashboard/shared/stat_card', label: 'Усього (останній scan)', value: dashboard_number(@last_scan.total_count)
+      = render 'dashboard/shared/stat_card',
+        label: 'Додано',
+        value: "+#{dashboard_number(@last_scan.added_count)}",
+        variant: 'success'
+      = render 'dashboard/shared/stat_card',
+        label: 'Видалено',
+        value: "−#{dashboard_number(@last_scan.removed_count)}",
+        variant: 'danger'
+      = render 'dashboard/shared/stat_card',
+        label: 'Без змін',
+        value: dashboard_number(@last_scan.unchanged_count)
+
+    .dash-inline-actions
+      = link_to 'Останнє сканування', dashboard_site_scan_path(@site, @last_scan), class: 'btn btn--primary'
+
+  section.dash-section
+    h2.dash-section__title Історія сканувань
+    = render 'dashboard/sites/scan_history_table', site: @site, scans: @scans

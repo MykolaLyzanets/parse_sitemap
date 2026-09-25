@@ -1,0 +1,27 @@
+.dash-card.dash-card--flush
+  .dash-table-wrap
+    table.dash-table
+      thead
+        tr
+          th Сайт
+          th.dash-table__num URL
+          th Останнє сканування
+          th.dash-table__num Додано
+          th.dash-table__num Видалено
+          th
+      tbody
+        - sites.each do |site|
+          tr
+            td
+              = link_to dashboard_site_path(site), class: 'dash-table__primary' do
+                strong= site.name
+                span.dash-table__muted= site.domain
+            td.dash-table__num= dashboard_number(site.url_count)
+            td
+              = dashboard_format_time(site.last_scan_at)
+            td.dash-table__num
+              = dashboard_delta_badge(site.last_added_count, kind: :added)
+            td.dash-table__num
+              = dashboard_delta_badge(site.last_removed_count, kind: :removed)
+            td.dash-table__actions
+              = link_to 'Відкрити', dashboard_site_path(site), class: 'btn btn--link'

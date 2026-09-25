@@ -1,0 +1,10 @@
+header.dash-page-header
+  .dash-page-header__text
+    - if local_assigns[:breadcrumb]
+      = render 'dashboard/shared/breadcrumb', items: breadcrumb
+    h1.dash-page-header__title= title
+    - if local_assigns[:subtitle]
+      p.dash-page-header__subtitle= subtitle
+  - if local_assigns[:actions]
+    .dash-page-header__actions
+      = actions

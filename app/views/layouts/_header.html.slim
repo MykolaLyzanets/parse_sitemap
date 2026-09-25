@@ -1,5 +1,5 @@
 header.header
   .container
-    = link_to 'Parse Sitemap', root_path, class: 'logo'
+    = link_to 'Parse Sitemap', (user_signed_in? ? dashboard_root_path : root_path), class: 'logo'
     nav
 

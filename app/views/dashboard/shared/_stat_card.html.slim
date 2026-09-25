@@ -1,0 +1,5 @@
+.dash-stat-card class=(local_assigns[:variant] ? "dash-stat-card--#{variant}" : nil)
+  p.dash-stat-card__label= label
+  p.dash-stat-card__value= value
+  - if local_assigns[:hint]
+    p.dash-stat-card__hint= hint

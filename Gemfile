@@ -73,3 +73,4 @@ gem "redis", "~> 6.0"
 gem "connection_pool", "~> 2.4"
 
 gem "devise", "~> 4.9"
+gem "carrierwave", "~> 3.0"

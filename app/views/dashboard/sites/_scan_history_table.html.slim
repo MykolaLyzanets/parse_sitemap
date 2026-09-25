@@ -1,0 +1,24 @@
+.dash-card.dash-card--flush
+  .dash-table-wrap
+    table.dash-table
+      thead
+        tr
+          th Сканування
+          th Статус
+          th.dash-table__num Усього
+          th.dash-table__num Додано
+          th.dash-table__num Видалено
+          th.dash-table__num Без змін
+          th
+      tbody
+        - scans.each do |scan|
+          tr
+            td
+              = link_to dashboard_format_time(scan.scanned_at), dashboard_site_scan_path(site, scan), class: 'dash-table__primary'
+            td= dashboard_scan_status_badge(scan.status)
+            td.dash-table__num= dashboard_number(scan.total_count)
+            td.dash-table__num= dashboard_delta_badge(scan.added_count, kind: :added)
+            td.dash-table__num= dashboard_delta_badge(scan.removed_count, kind: :removed)
+            td.dash-table__num= dashboard_number(scan.unchanged_count)
+            td.dash-table__actions
+              = link_to 'Деталі', dashboard_site_scan_path(site, scan), class: 'btn btn--link'

@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Parse Sitemap · Login
+    title Parse Sitemap · Вхід
     meta name="viewport" content="width=device-width,initial-scale=1"
     = csrf_meta_tags
     = stylesheet_link_tag "css/application.min", "data-turbo-track": "reload"
@@ -15,10 +15,10 @@ html
 
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         div
-          = f.label :email
+          = f.label :email, 'Email'
           = f.email_field :email, autofocus: true, autocomplete: 'email', required: true
         div
-          = f.label :password
+          = f.label :password, 'Пароль'
           = f.password_field :password, autocomplete: 'current-password', required: true
         - if devise_mapping.rememberable?
           div

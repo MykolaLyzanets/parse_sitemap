@@ -13,13 +13,9 @@ module ParseSitemap
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    config.i18n.available_locales = %i[en ua ru]
+    config.i18n.available_locales = [:ua]
     config.i18n.default_locale = :ua
-
-    config.i18n.fallbacks = [I18n.default_locale]
-    config.i18n.fallbacks = true
-
-    config.autoload_paths += %W[#{config.root}/lib]
+    config.i18n.fallbacks = false
 
     config.active_job.queue_adapter = :sidekiq
 

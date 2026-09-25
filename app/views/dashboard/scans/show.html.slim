@@ -1,0 +1,29 @@
+- content_for :dashboard_title, "Сканування · #{@site.name}"
+.container-dash
+  - breadcrumb = [{ label: 'Сайти', path: dashboard_root_path }, { label: @site.name, path: dashboard_site_path(@site) }, { label: dashboard_format_time(@scan.scanned_at) }]
+  - header_actions = safe_join([link_to('Видалені URL', removed_urls_dashboard_site_path(@site), class: 'btn btn--ghost'), link_to('Сайт', dashboard_site_path(@site), class: 'btn btn--link')], ' ')
+  = render 'dashboard/shared/page_header',
+    title: 'Деталі сканування',
+    subtitle: dashboard_format_time(@scan.scanned_at),
+    breadcrumb: breadcrumb,
+    actions: header_actions
+
+  .dash-scan-meta
+    = dashboard_scan_status_badge(@scan.status)
+    span.dash-scan-meta__id Сканування №#{@scan.id}
+
+  .dash-stats-row
+    = render 'dashboard/shared/stat_card', label: 'Усього URL', value: dashboard_number(@scan.total_count)
+    = render 'dashboard/shared/stat_card',
+      label: 'Додано',
+      value: "+#{dashboard_number(@scan.added_count)}",
+      variant: 'success'
+    = render 'dashboard/shared/stat_card',
+      label: 'Видалено',
+      value: "−#{dashboard_number(@scan.removed_count)}",
+      variant: 'danger'
+    = render 'dashboard/shared/stat_card',
+      label: 'Без змін',
+      value: dashboard_number(@scan.unchanged_count)
+
+  = render 'dashboard/scans/url_panels', site: @site, scan: @scan, url_page: @url_page
